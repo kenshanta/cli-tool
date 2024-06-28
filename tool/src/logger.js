@@ -1,8 +1,12 @@
-module.export = function createLogger(name) {
-  return {
-    log: (...args) => console.log(...args),
-    warning: (...args) => console.log(...args),
-    highlight: (...args) => console.log(...args),
-    debug: console.log,
-  };
-};
+const chalk = require("chalk");
+const debug = require("debug");
+
+const warning = (...args) => console.log(chalk.yellow(...args));
+
+const log = (...args) => console.log(chalk.grey(...args));
+
+const highlight = (...args) => console.log(chalk.bgCyanBright(...args));
+
+const debugz = (...args) => debug("s");
+
+module.exports = { warning, log, debugz, highlight };

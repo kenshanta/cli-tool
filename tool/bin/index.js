@@ -1,21 +1,24 @@
 #!/usr/bin/env node
 const arg = require("arg");
-// const chalk = require("chalk");
 const getConfig = require("../src/config/config-mgr");
-
+const chalk = require("chalk");
+const start = require("../src/commands/start");
 try {
   const args = arg({
     "--start": Boolean,
     "--build": Boolean,
   });
+
+  // logger.debugz("Received args:", args);
+
   if (args["--start"]) {
     const config = getConfig();
-    console.log("  Starting the app  ");
-    console.log("Received configuration in start -", config);
+    start(config);
   } else if (args["--build"]) {
-    console.log("building the app");
+    console.log(chalk.blueBright("building the app"));
   }
-  console.log(args);
 } catch (error) {
-  console.log(error);
+  chalk.error
+    ? console.log(chalk.redBright("Chalk error:", chalk.error))
+    : console.log(chalk.redBright(error));
 }
