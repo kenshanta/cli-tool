@@ -15,6 +15,8 @@ try {
     const config = getConfig();
     start(config);
   } else if (args["--build"]) {
+    const config = getConfig();
+
     console.log(chalk.blueBright("building the app"));
   }
 } catch (error) {
