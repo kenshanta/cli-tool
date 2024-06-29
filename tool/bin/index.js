@@ -3,21 +3,29 @@ const arg = require("arg");
 const getConfig = require("../src/config/config-mgr");
 const chalk = require("chalk");
 const start = require("../src/commands/start");
+const build = require("../src/commands/build");
+const help = require("../src/commands/help");
+const version = require("../src/commands/version");
+
 try {
   const args = arg({
     "--start": Boolean,
     "--build": Boolean,
+    "--help": Boolean,
+    "--version": Boolean,
   });
-
-  // logger.debugz("Received args:", args);
+  const config = getConfig();
 
   if (args["--start"]) {
-    const config = getConfig();
     start(config);
   } else if (args["--build"]) {
-    const config = getConfig();
-
-    console.log(chalk.blueBright("building the app"));
+    build(config);
+  } else if (args["--help"]) {
+    help(config);
+  } else if (args["--version"]) {
+    version(config);
+  } else {
+    help(config);
   }
 } catch (error) {
   chalk.error

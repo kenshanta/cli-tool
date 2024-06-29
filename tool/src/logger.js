@@ -7,6 +7,6 @@ const log = (...args) => console.log(chalk.grey(...args));
 
 const highlight = (...args) => console.log(chalk.bgCyanBright(...args));
 
-const debugz = (...args) => debug("s");
+const debugz = (...args) => debug(...args);
 
 module.exports = { warning, log, debugz, highlight };
